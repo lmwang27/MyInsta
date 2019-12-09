@@ -11,3 +11,9 @@ class PostsView(ListView):
     model = Post
     template_name = "index.html"
 
+
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'post_detail.html'
+
+
