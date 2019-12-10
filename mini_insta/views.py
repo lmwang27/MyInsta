@@ -23,5 +23,9 @@ class PostCreateView(CreateView):
     template_name = "post_create.html"
     fields = '__all__'
 
+class PostUpdateView(UpdateView):
+    model = Post
+    template_name = 'post_update.html'
+    fields = ['title']
 
 
