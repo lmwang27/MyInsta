@@ -3,6 +3,7 @@ from django.views.generic import TemplateView, ListView, DetailView
 from mini_insta.models import Post
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.forms import UserCreationForm
 
 
 # Create your views here.
@@ -33,6 +34,12 @@ class PostDeleteView(DeleteView):
     model = Post
     template_name = "post_delete.html"
     success_url = reverse_lazy("posts")
+
+class SignUpView(CreateView):
+    form_class = UserCreationForm
+    template_name = 'signup.html'
+    success_url = reverse_lazy("login")
+
 
 
 
