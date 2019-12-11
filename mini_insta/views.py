@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
-from mini_insta.models import Post
+from mini_insta.models import Post, InstaUser
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from django.contrib.auth.forms import UserCreationForm
+from mini_insta.forms import CustomUserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -38,7 +38,7 @@ class PostDeleteView(DeleteView):
     success_url = reverse_lazy("posts")
 
 class SignUpView(CreateView):
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     template_name = 'signup.html'
     success_url = reverse_lazy("login")
 
