@@ -19,4 +19,6 @@ from django.urls import include , path
 urlpatterns = [
     path('admin/',admin.site.urls),
     path('insta/',include('mini_insta.urls')),
+    path('auth/',include('django.contrib.auth.urls')),
+
 ]
