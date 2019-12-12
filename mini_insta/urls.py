@@ -1,7 +1,7 @@
 from django.urls import include , path
 from mini_insta.views import (HelloDjango , PostsView , PostDetailView, PostCreateView, 
                               PostUpdateView,PostDeleteView, addLike,
-                               UserDetailView, ExploreView,UserUpdateView, addComment)
+                               UserDetailView, ExploreView,UserUpdateView, addComment, toggleFollow)
 
 urlpatterns = [
     path('helloworld', HelloDjango.as_view(), name='test'),
@@ -15,5 +15,6 @@ urlpatterns = [
     path('user/<int:pk>', UserDetailView.as_view(), name ='profile'),
     path('user/update/<int:pk>', UserUpdateView.as_view(), name ='edit_profile'),
     path('explore', ExploreView.as_view(), name='explore'),
+    path('togglefollow', toggleFollow, name='togglefollow'),
 
 ]
