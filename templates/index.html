@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load custom_tags %}
+
 {% block content %}
 
 <div class="cards-listing">
@@ -27,7 +29,7 @@
                         {% endif %}
                     </div>
                     <section class ="input_row">
-                        <i class = "fa fa-heart-o submit-like" arial-hidden="true"></i>
+                        <i class="fa {% has_user_liked_post post user %} submit-like" aria-hidden="true"></i>
                     </section>
                 </div> 
             </div>
