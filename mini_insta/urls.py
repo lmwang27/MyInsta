@@ -1,5 +1,5 @@
 from django.urls import include , path
-from mini_insta.views import HelloDjango , PostsView , PostDetailView, PostCreateView, PostUpdateView,PostDeleteView, addLike
+from mini_insta.views import HelloDjango , PostsView , PostDetailView, PostCreateView, PostUpdateView,PostDeleteView, addLike, UserDetailView, ExploreView
 
 urlpatterns = [
     path('helloworld', HelloDjango.as_view(), name='test'),
@@ -9,5 +9,7 @@ urlpatterns = [
     path('post/update/<int:pk>',PostUpdateView.as_view(), name = 'post_update'),
     path('post/delete/<int:pk>',PostDeleteView.as_view(), name = 'post_delete'),
     path('like', addLike, name='addLike'),
+    path('user/<int:pk>', UserDetailView.as_view(), name ='profile'),
+    path('explore', ExploreView.as_view(), name='explore'),
 
 ]

@@ -1,7 +1,7 @@
 from annoying.decorators import ajax_request
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
-from mini_insta.models import Post, InstaUser, Like
+from mini_insta.models import Post, InstaUser, Like, UserConnection
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from mini_insta.forms import CustomUserCreationForm
@@ -16,7 +16,16 @@ class HelloDjango(TemplateView):
 class PostsView(ListView):
     model = Post
     template_name = "index.html"
+    login_url = "login"
 
+    """
+    def get_queryset(self):
+        current_user = self.request.user
+        following = set()
+        for conn in UserConnection.objects.filter(creator=current_user).select_related('following'):
+            following.add(conn.following)
+        return Post.objects.filter(author__in=following)
+    """
 
 class PostDetailView(DetailView):
     model = Post
@@ -61,6 +70,20 @@ def addLike(request):
         'result': result,
         'post_pk': post_pk
     }
+
+class UserDetailView(DetailView):
+    model = InstaUser
+    template_name = 'user_profile.html'
+
+
+class ExploreView(LoginRequiredMixin, ListView):
+    model = Post
+    template_name = 'explore.html'
+    login_url = 'login'
+
+    def get_queryset(self):
+        return Post.objects.all().order_by('-posted_on')[:20]
+
 
 
 
