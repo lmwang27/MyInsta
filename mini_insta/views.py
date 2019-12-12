@@ -7,6 +7,8 @@ from django.urls import reverse_lazy
 from mini_insta.forms import CustomUserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.core.paginator import Paginator
+
 
 # Create your views here.
 # render html
@@ -17,6 +19,12 @@ class PostsView(ListView):
     model = Post
     template_name = "index.html"
     login_url = "login"
+
+    """
+    paginate_by = 100  # if pagination is desired
+    Using Paginator in a view¶:
+    https://docs.djangoproject.com/en/3.0/topics/pagination/#using-paginator-in-view
+    """
 
     """
     def get_queryset(self):
