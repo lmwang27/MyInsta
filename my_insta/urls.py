@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/',admin.site.urls),
     path('',include('mini_insta.urls')),
     path('auth/',include('django.contrib.auth.urls')),
-    path('auth/signup',SignUpView.as_view(),name = 'signup')
+    path('auth/signup',SignUpView.as_view(),name = 'signup'),
+    path('api/',include('api.urls')),
 
 ]
